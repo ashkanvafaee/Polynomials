@@ -1,6 +1,5 @@
 /**
 * assignment-7.cpp
-*
 * Implementation of Poly member functions
 *
 * Authors:
@@ -23,9 +22,9 @@ Poly::Poly(char* str) {
 	Node* temp = '\0';
 	while (n > 0) {
 
-		if (stof(str) == 0.0) {										////////////////  THIS SKIPS 0 COEFFICIENT TERMS
+		if (stof(str) == 0.0) {							//Skips 0 coefficient terms
 
-			if (*(str + 1) == 'x' && *(str + 2) == '^') {				// CASE: #x^#
+			if (*(str + 1) == 'x' && *(str + 2) == '^') {			// CASE: #x^#
 				n--; str++;
 				n--; str++;
 				n--; str++;
@@ -37,18 +36,18 @@ Poly::Poly(char* str) {
 				n--; str++;		//skips over 'x'
 			}
 
-			else if (*(str + 1) != 'x') {							// CASE: #x^0
+			else if (*(str + 1) != 'x') {					// CASE: #x^0
 				n--; str++;
 			}
 
 
 
 			continue;
-		}													/////////////////////////////////////////////////////////
+		}										
 
 		Node* x = new Node;
 		x->next = NULL;
-		if (this->head == NULL) {							//only occurs first time
+		if (this->head == NULL) {						
 			this->head = x;
 		}
 		x->coeff = stof(str);
@@ -81,14 +80,6 @@ Poly::Poly(char* str) {
 		nodeCt++;
 	}
 
-	/*Node* end = this->head;
-	for (int i = 0; i < this->nodeCt; i++) {				///////////////////////////// Puts NULL at the end
-		end = end->next;
-	}
-	end = NULL;
-
-	*/
-
 }
 
 Poly::~Poly() {
@@ -105,7 +96,7 @@ Poly::~Poly() {
 }
 
 Poly* Poly::add(Poly& otherPoly) {
-	if (this->nodeCt == 0 && otherPoly.nodeCt != 0) {			//////////////////////////////////////////////////////////*****************************
+	if (this->nodeCt == 0 && otherPoly.nodeCt != 0) {			
 		Poly* p1;
 		Poly* p3 = new Poly;
 		p3->head = NULL;
@@ -133,7 +124,7 @@ Poly* Poly::add(Poly& otherPoly) {
 
 	}
 
-	if (this->nodeCt != 0 && otherPoly.nodeCt == 0) {			// ACCOUNTING FOR EMPTY POLYNOMIALS			
+	if (this->nodeCt != 0 && otherPoly.nodeCt == 0) {			// Accounting for empty polynomials			
 		Poly* p1;
 		Poly* p3 = new Poly;
 		p3->head = NULL;
@@ -164,7 +155,7 @@ Poly* Poly::add(Poly& otherPoly) {
 		Poly *temp = new Poly;
 		temp->head = NULL;
 		return(temp);
-	}														  ///////////////////////////////////////////////////////////***************************
+	}														  
 
 
 
@@ -189,12 +180,12 @@ Poly* Poly::add(Poly& otherPoly) {
 		if (n1 != NULL && n2 != NULL) {
 			if (n1->degree == n2->degree) {
 
-				if (n1->coeff == n2->coeff*-1) {				//////////////////////////////
-					n1 = n1->next;
-					n2 = n2->next;								// ACCOUNTS FOR COMPLETE CANCELLATION OF COEFFICIENTS OF SAME DEGREE (SHOULDN'T STORE 0 COEFFICIENTS)
+				if (n1->coeff == n2->coeff*-1) {	// Accounts for complete cancellation of coefficients of same degree (Shouldn't store 0 coefficients)		
+					n1 = n1->next;			
+					n2 = n2->next;			
 					n--;
 					continue;
-				}												/////////////////////////////
+				}												
 
 
 				Node *n3 = new Node;
@@ -312,10 +303,10 @@ Poly* Poly::multiply(Poly& otherPoly) {
 			for (Node* scan = head; scan != NULL; scan = scan->next) {
 				if (scan->degree == degree) {
 					scan->coeff = (temp1->coeff * temp2->coeff) + scan->coeff;
-					flag = 1;													//found match
+					flag = 1;								//found match
 				}
 			}
-			if (flag != 1) {												//No match, make new node
+			if (flag != 1) {									//No match, make new node
 
 
 				if (flagfirst == 1) {
@@ -352,22 +343,22 @@ Poly* Poly::multiply(Poly& otherPoly) {
 	//return (p3);
 
 
-	Poly* p4 = new Poly;										///////////////////////////////////////////////////////////////
+	Poly* p4 = new Poly;										
 	p4->head = NULL;
-	Poly *p1 = p3;												///////// p3 is the previous result
+	Poly *p1 = p3;							//p3 is the previous result
 	Node* n1 = p1->head;
 	Node *temp = NULL;
 	int count = 0;
 
 	for (int i = 0; i < p3->nodeCt; i++) {
-		if (n1->coeff == 0) {						/////////// skips 0 coefficients
+		if (n1->coeff == 0) {					//skips 0 coefficients
 			n1 = n1->next;
 			continue;
 		}
 
-		Node *n3 = new Node;
-		n3->coeff = n1->coeff;						/////////// REMOVES ALL OF THE 0 COEFFICIENT TERMS IN THE RESULTING POLYNOMIAL
-		n3->degree = n1->degree;
+		Node *n3 = new Node;			
+		n3->coeff = n1->coeff;					
+		n3->degree = n1->degree;		//Removes all of the 0 coefficent terms in the resulting polynomial
 		n3->next = NULL;
 		if (temp != NULL) {
 			temp->next = n3;
@@ -380,15 +371,15 @@ Poly* Poly::multiply(Poly& otherPoly) {
 		count++;
 	}
 	p4->nodeCt = count;
-	return(p4);										//////////////////////////////////////////////////////////////
+	return(p4);										
 
 
 }
 
 double Poly::eval(int x) {
-	if (this->nodeCt == 0) {			/////////////////////////////////
-		return(0.0);					// ACCOUNTS FOR EMPTY STRING
-	}									////////////////////////////////
+	if (this->nodeCt == 0) {			
+		return(0.0);					// Accounts for empty polynomial
+	}									
 
 	Node *temp = this->head;
 	double d = 0;
@@ -427,8 +418,8 @@ void Poly::print() {
 }
 
 bool Poly::equals(Poly& otherPoly) {
-	if (this->nodeCt == 0 && otherPoly.nodeCt == 0) {						//////////////////////////////////////////
-		return(true);														//  ACCOUNTS FOR BOTH POLYNOMIALS BEING EMPTY
+	if (this->nodeCt == 0 && otherPoly.nodeCt == 0) {						
+		return(true);						// Accounts for both polynomials being empty
 	}																		//////////////////////////////////////////
 
 
