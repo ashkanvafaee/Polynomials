@@ -17,8 +17,8 @@ private:
 	int nodeCt;
 public:
     Poly() {} 
-	Poly(char* str);
-	~Poly();
+	Poly(char* str);			//Constructor that takes in a String representation of a polynomial
+	~Poly();				/Destructor
 	Poly* add(Poly& otherPoly);		//Adds 2 polynomials
 	Poly* multiply(Poly& otherPoly);	//Multiplies 2 polynomials
 	double eval(int x);			//Evaluates polynomial using a given integer value of x
@@ -29,5 +29,5 @@ public:
 	Poly operator+(Poly otherPoly);		//Overloads + operation
 	Poly operator*(Poly otherPoly);		//Overload * operation
 	bool operator==(Poly otherPoly);	//Overloads == operation
-	double operator()(int x);
+	double operator()(int x);		//Evaluates polynomial using a given integer value of x
 };
