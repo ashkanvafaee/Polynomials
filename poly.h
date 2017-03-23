@@ -19,15 +19,15 @@ public:
     Poly() {} 
 	Poly(char* str);
 	~Poly();
-	Poly* add(Poly& otherPoly);
-	Poly* multiply(Poly& otherPoly);
-	double eval(int x);
-	void print();
-	bool equals(Poly& otherPoly);
-	Node* getPoly(void);
+	Poly* add(Poly& otherPoly);		//Adds 2 polynomials
+	Poly* multiply(Poly& otherPoly);	//Multiplies 2 polynomials
+	double eval(int x);			//Evaluates polynomial using a given integer value of x
+	void print();				//Prints the polynomial
+	bool equals(Poly& otherPoly);		//Determines if 2 polynomials are equal
+	Node* getPoly(void);			
 	// Add public members if needed
-	Poly operator+(Poly otherPoly);
-	Poly operator*(Poly otherPoly);
-	bool operator==(Poly otherPoly);
+	Poly operator+(Poly otherPoly);		//Overloads + operation
+	Poly operator*(Poly otherPoly);		//Overload * operation
+	bool operator==(Poly otherPoly);	//Overloads == operation
 	double operator()(int x);
 };
