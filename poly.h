@@ -2,7 +2,6 @@
 * poly.h 
 * 
 * This file defines the prototypes of strct Node and class Poly
-* Implementation should be done in assignment-7.cpp
 */
 
 struct Node {
