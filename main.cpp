@@ -1,9 +1,7 @@
 /**
 * main.cpp 
 * 
-* This file is provided for you to run and test the program
-* You may add your own tests here to debug and verify your program
-* But this file will NOT be considered by the grader
+* This file is provided for run and test the program
 */
 
 #include <iostream>
